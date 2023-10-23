@@ -119,8 +119,73 @@ type HomeProps= {
 
 3. if we have default value we don't need to create a type
 
+4. as const
+   we use it when dealing with array of specific type wherein we dont write in that array
+
+```React
+const greenOptions = ["hi", "hello"] as const
+```
+
+5. ommit
+   we use ommit when we are creating a type that is simmillar to the ones that we created but remove one or two types init
+
+```React
+type User = {sessionId: string, name: string}
+type Guest = Omit<User, "name">
+```
+
+6. Generics
+   it is use when we want the return type to be as the same value as the parameter type
+
+```React
+function toArray <T>(value:T): T[]{
+   return [value]
+}
+```
+
 ### common words use in typescript
 
 1. infer = meaning typescript can well guess the type of data
 
 ### helper types??
+
+1. component type
+   type ButtonProps = React.ComponentProps<'button'>
+
+### inheritance type
+
+```React
+// with alliase
+type ButtonProps = {
+   color: "red" | "blue" | "green",
+   type: "submit" | "button" | "reset",
+}
+
+type SuperButtonProps = ButtonProps & {
+   size: "sm", "md", "lg"
+}
+
+//with interface
+
+type ButtonProps{
+   color: "red" | "blue" | "green",
+   type: "submit" | "button" | "reset",
+}
+
+type SuperButtonProps extends ButtonProps {
+   size: "sm", "md", "lg"
+}
+```
+
+### hooks
+
+1. infer
+2. objects
+
+```React
+type User = {
+   name: string,
+   age: number
+}
+const [user, setUser] = useState<User | null>(null)
+```
